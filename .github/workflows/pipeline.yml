@@ -20,10 +20,8 @@ jobs:
       - name: test
         run: npm run test
       - name: e2e tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v2
         with:
           command: echo "adasd" && npm run test:e2e
           start: npm run start-prod
-          wait-on: 'http://localhost:5000'
-          wait-on-timeout: 240
-        timeout-minutes: 5
+          wait-on: http://localhost:5000
