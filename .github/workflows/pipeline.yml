@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: npm set fund false
+        run: npm config set fund false
       - name: npm install
         run: npm i
       - name: lint
@@ -20,11 +22,8 @@ jobs:
       - name: test
         run: npm run test
       - name: e2e tests
-        uses: cypress-io/github-action@v2
-        env:
-          DEBUG: '@cypress/github-action'
+        uses: cypress-io/github-action@v4
         with:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-          wait-on-timeout: 240
