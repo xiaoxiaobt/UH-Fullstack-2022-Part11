@@ -34,3 +34,4 @@ jobs:
           heroku_email: "taige.wang@aalto.fi"
           healthcheck: "https://github-actions-deploy.herokuapp.com/health"
           checkstring: "ok"
+          delay: 5
