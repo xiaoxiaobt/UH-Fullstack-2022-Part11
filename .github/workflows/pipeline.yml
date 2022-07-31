@@ -33,6 +33,6 @@ jobs:
           heroku_app_name: "github-actions-deploy"
           heroku_email: "taige.wang@aalto.fi"
           healthcheck: "http://github-actions-deploy.herokuapp.com/health"
-          checkstring: "test"
+          checkstring: "ok"
           delay: 5
           rollbackonhealthcheckfailed: true
