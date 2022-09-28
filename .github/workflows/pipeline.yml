@@ -22,6 +22,15 @@ jobs:
         run: npm i
       - name: lint
         run: npm run eslint
+      - name: build
+        run: npm run build
+      - name: Build failed
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          details: Build failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: test
         run: npm run test
       - name: e2e tests
@@ -54,3 +63,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         if: ${{ !contains(join(env.COMMIT_MESSAGES), '#skip') }}
+      - name: Add tag success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+            severity: info
+            details: A new version of Pokedex deployed
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
